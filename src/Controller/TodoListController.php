@@ -9,7 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class TodoListController extends AbstractController
 {
     /**
-     * @Route("/todo/list", name="todo_list")
+     * @Route("/", name="index")
+     * @Route("/todolist", name="todolist")
      */
     public function index(): Response
     {
