@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">ToDoList</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Mes projets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Creer un projet</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Les projets archivés</a>
+      </li>  
+    </ul>
+  </div>
+<button type="button" class="btn btn-warning">Se deconnecter</button>
+</nav>
+
+
+{% block main %}
+
+{% endblock %}
+
+
+{% endblock %}
