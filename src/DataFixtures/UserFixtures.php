@@ -48,6 +48,7 @@ class UserFixtures extends Fixture
 
             $project->setTitle("Projet $i")
                 ->setContent("Contenu $i")
+                ->setStatus("inprogress")
                 ->setCreationDate(new \DateTime())
                 ->setDeadline(new \DateTime())
                 ->setUser($user);

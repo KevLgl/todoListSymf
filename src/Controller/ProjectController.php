@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @IsGranted("IS_AUTHENTICATED_FULLY")
+ */
+
+
+/**
  * @Route("/project")
  */
 class ProjectController extends AbstractController
@@ -30,12 +35,18 @@ class ProjectController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+        $user = $this->getUser();
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $project->setCreationDate(new\DateTime('now'));
+            $project->setUser($user);
+            $project->setStatus("inprogress");
+
             $entityManager->persist($project);
             $entityManager->flush();
 
