@@ -15,8 +15,7 @@ class TaskType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('deadline')
-            ->add('creationDate')
-            ->add('project')
+
         ;
     }
 
