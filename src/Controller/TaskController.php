@@ -32,7 +32,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/new/{id}", name="task_new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="task_new", methods={"GET","POST"})
      */
     public function new(Request $request, int $id): Response
     {
@@ -91,16 +91,17 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="task_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="task_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Task $task): Response
     {
+        $projectId = $task->getProject()->getId();
         if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($task);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('project_show');
+        return $this->redirectToRoute('project_show', ['id' => $projectId]);
     }
 }
