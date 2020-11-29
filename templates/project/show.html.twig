@@ -5,9 +5,9 @@
 {% block main %}
 
 <a class="btn btn-secondary" href="{{ path('project_index') }}"> Revenir à la liste des projets</a>
-    <h1 class="text-center m-3 display-4">{{ project.title }}</h1>
+    <h2 class="text-center m-3">{{ project.title }}</h2>
         <div class="jumbotron bg-light">
-            <h1 class="display-3">{{ project.content }}</h1>
+            <h3>{{ project.content }}</h3>
             <p class="lead">Créé le {{ project.creationDate ? project.creationDate|date('Y-m-d H:i:s') : '' }}</p>
              <p class="lead text-warning">A finir avant le {{ project.deadline ? project.deadline|date('Y-m-d H:i:s') : '' }}</p>
             <div class="lead">

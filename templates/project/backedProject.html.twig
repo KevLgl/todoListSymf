@@ -1,0 +1,30 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block main %}
+    <h1>Mes projets</h1>
+
+   
+        {% for project in projects %}
+
+                <div class="card bg-light my-3">
+
+                    <div class="card-header">
+                      <p class="text-center display-4">  {{ project.title }} </p>
+                      <p class="text-success">Le projet est terminé</p>
+                      <p> Créé le : {{ project.creationDate | date("m/d/Y")}} à {{ project.creationDate | date('H:i') }} </p>
+                    </div>   
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.content }}</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>                   
+                          <a href="{{ path('project_progress', {'id': project.id}) }}" class="btn btn-success btn-lg btn-block">Remettre dans mes projets</a>
+                        {{ include('project/_delete_form.html.twig') }}
+                    </div>
+                    <div>  
+                        <p class="float-right text-warning mx-2"> A finir avant : {{ project.deadline | date("m/d/Y")}} à {{ project.deadline | date('H:i') }} </p>
+                    </div>
+                </div>  
+                {% endfor %}
+    <a href="{{ path('project_new') }}" class="btn btn-primary">Create new</a>
+{% endblock %}

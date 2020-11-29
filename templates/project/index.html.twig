@@ -5,28 +5,46 @@
 {% block main %}
     <h1>Mes projets</h1>
 
+   
         {% for project in projects %}
+         {% if (project.status == 'inprogress') or (project.status == 'finished') %}  
                 <div class="card bg-light my-3">
+                {% if project.status is same as('inprogress') %}
                     <div class="card-header">
-                      <p class="text-center display-4">  {{ project.title }} </p>
+                      <p class="text-center display-4 ">  {{ project.title }} </p>
+                      <p class="text-primary">Le projet est en cours</p>
                       <p> Créé le : {{ project.creationDate | date("m/d/Y")}} à {{ project.creationDate | date('H:i') }} </p>
                     </div>
+                {% else %}
+                    <div class="card-header">
+                      <p class="text-center display-4">  {{ project.title }} </p>
+                      <p class="text-success">Le projet est terminé</p>
+                      <p> Créé le : {{ project.creationDate | date("m/d/Y")}} à {{ project.creationDate | date('H:i') }} </p>
+                    </div>
+                {% endif %}    
                     <div class="card-body">
                         <h5 class="card-title">{{ project.content }}</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="{{ path('project_show', {'id': project.id}) }}" class="btn btn-primary btn-lg btn-block">Voir le projet</a>
                         <a href="{{ path('project_edit', {'id': project.id}) }}" class="btn btn-primary btn-lg btn-block">Modifier le projet</a>
+                        {% if project.status is same as('inprogress') %}
+                        <a href="{{ path('project_finished', {'id': project.id}) }}" class="btn btn-primary btn-lg btn-block">Le projet est terminé</a>
+                        {% else %}
+                        <a href="{{ path('project_progress', {'id': project.id}) }}" class="btn btn-primary btn-lg btn-block">Le projet est en cours</a>
+                        {% endif %}                        
+                          <a href="{{ path('project_bebacked', {'id': project.id}) }}" class="btn btn-warning btn-lg btn-block">Archiver le projet</a>
                         {{ include('project/_delete_form.html.twig') }}
                     </div>
                     <div>  
                         <p class="float-right text-warning mx-2"> A finir avant : {{ project.deadline | date("m/d/Y")}} à {{ project.deadline | date('H:i') }} </p>
                     </div>
                 </div>
-
+        {% endif %}
         {% else %}
 
                <p>Aucun projet à montrer </p>
 
         {% endfor %}
+    
     <a href="{{ path('project_new') }}" class="btn btn-primary">Create new</a>
 {% endblock %}
