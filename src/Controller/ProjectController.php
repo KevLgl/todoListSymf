@@ -105,4 +105,53 @@ class ProjectController extends AbstractController
 
         return $this->redirectToRoute('project_index');
     }
+    
+    /**
+     * @Route("/finished/{id}", name="project_finished", methods={"GET"})
+     */
+    public function changeStatusToFinished(Project $project, ProjectRepository $projectRepository): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $project->setStatus("finished");
+        $entityManager->flush();
+     
+        return $this->render('project/index.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+
+     
+    }
+
+    /**
+     * @Route("/progress/{id}", name="project_progress", methods={"GET"})
+     */
+    public function changeStatusToInProgress(Project $project, ProjectRepository $projectRepository): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $project->setStatus("inprogress");
+        $entityManager->flush();
+     
+        return $this->render('project/index.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+
+    }
+    /**
+     * @Route("/bebacked/{id}", name="project_bebacked", methods={"GET"})
+     */
+    public function changeStatusToBeBacked(Project $project, ProjectRepository $projectRepository): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $project->setStatus("bebacked");
+        $entityManager->flush();
+     
+        return $this->render('project/index.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
+
 }
