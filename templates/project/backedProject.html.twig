@@ -1,9 +1,9 @@
 {% extends 'template.html.twig' %}
 
-{% block title %}Project index{% endblock %}
+{% block title %}Project archivés{% endblock %}
 
 {% block main %}
-    <h1>Mes projets</h1>
+    <h1>Mes projets archivés</h1>
 
    
         {% for project in projects %}
@@ -12,7 +12,7 @@
 
                     <div class="card-header">
                       <p class="text-center display-4">  {{ project.title }} </p>
-                      <p class="text-success">Le projet est terminé</p>
+                      <p class="text-success">Le projet est archivé</p>
                       <p> Créé le : {{ project.creationDate | date("m/d/Y")}} à {{ project.creationDate | date('H:i') }} </p>
                     </div>   
                     <div class="card-body">
@@ -25,6 +25,7 @@
                         <p class="float-right text-warning mx-2"> A finir avant : {{ project.deadline | date("m/d/Y")}} à {{ project.deadline | date('H:i') }} </p>
                     </div>
                 </div>  
-                {% endfor %}
-    <a href="{{ path('project_new') }}" class="btn btn-primary">Create new</a>
+        
+        {% endfor %}
+
 {% endblock %}

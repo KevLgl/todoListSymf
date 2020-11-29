@@ -9,7 +9,7 @@
         <div class="jumbotron bg-light">
             <h3>{{ project.content }}</h3>
             <p class="lead">Créé le {{ project.creationDate ? project.creationDate|date('Y-m-d H:i:s') : '' }}</p>
-             <p class="lead text-warning">A finir avant le {{ project.deadline ? project.deadline|date('Y-m-d H:i:s') : '' }}</p>
+            <p class="lead text-warning">A finir avant le {{ project.deadline ? project.deadline|date('Y-m-d H:i:s') : '' }}</p>
             <div class="lead">
              {% for task in tasks %}
                 <div class="card my-4">
