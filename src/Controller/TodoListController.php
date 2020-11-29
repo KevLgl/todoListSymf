@@ -23,9 +23,7 @@ class TodoListController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('todo_list/index.html.twig', [
-            'controller_name' => 'TodoListController',
-        ]);
+        return $this->redirectToRoute('project_index');
     }
 
     /**

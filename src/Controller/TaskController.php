@@ -101,6 +101,6 @@ class TaskController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('');
+        return $this->redirectToRoute('project_show');
     }
 }
