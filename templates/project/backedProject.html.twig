@@ -16,8 +16,7 @@
                       <p> Créé le : {{ project.creationDate | date("m/d/Y")}} à {{ project.creationDate | date('H:i') }} </p>
                     </div>   
                     <div class="card-body">
-                        <h5 class="card-title">{{ project.content }}</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>                   
+                        <h5 class="card-title">{{ project.content }}</h5>           
                           <a href="{{ path('project_progress', {'id': project.id}) }}" class="btn btn-success btn-lg btn-block">Remettre dans mes projets</a>
                         {{ include('project/_delete_form.html.twig') }}
                     </div>
